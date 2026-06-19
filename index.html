@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOFRES | Artem Malyshev</title>
+  <style>
+    :root {
+      --bg: #0f0a1f;
+      --accent: #c084fc;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+    }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(15,10,31,0.75), rgba(15,10,31,0.9)), 
+                  url('https://via.placeholder.com/1920x1080/0f0a1f/000000?text=ЗАГРУЗИ+IMG_1012.JPG') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    .hero { z-index: 2; padding: 40px 20px; max-width: 800px; }
+
+    h1 { font-size: 5.8rem; letter-spacing: 6px; margin-bottom: 8px; text-shadow: 0 0 30px var(--accent); }
+    .artist-name { font-size: 1.9rem; color: var(--accent); margin-bottom: 20px; letter-spacing: 4px; }
+    .subtitle { font-size: 1.55rem; color: #ddd; margin-bottom: 50px; }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 48px;
+      background: transparent;
+      color: white;
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 10px;
+      transition: 0.4s;
+    }
+    .btn:hover {
+      background: var(--accent);
+      color: black;
+      transform: scale(1.08);
+    }
+
+    .donate-btn {
+      background: var(--accent) !important;
+      color: black !important;
+      font-size: 1.3rem;
+      padding: 18px 60px;
+      margin: 30px auto;
+      display: block;
+      max-width: 340px;
+    }
+
+    .lang-switch {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      padding: 8px 12px;
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      z-index: 100;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    .lang-btn.active { background: var(--accent); color: black; }
+
+    section { 
+      padding: 90px 5%; 
+      max-width: 1400px; 
+      margin: 0 auto; 
+      text-align: center;
+    }
+    h2 { font-size: 3.2rem; text-align: center; margin-bottom: 60px; color: var(--accent); }
+
+    .spotify-player {
+      width: 100%;
+      max-width: 820px;
+      margin: 40px auto;
+      display: block;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+    .track {
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px 20px;
+      transition: 0.4s;
+      color: inherit;
+      text-decoration: none;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .track:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(192, 132, 252, 0.25);
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px;
+      background: rgba(15,10,31,0.95);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Переключатель языка -->
+  <div class="lang-switch glass">
+    <button class="lang-btn active" onclick="switchLang('ru')">RU</button>
+    <button class="lang-btn" onclick="switchLang('en')">EN</button>
+  </div>
+
+  <!-- Герой -->
+  <header>
+    <div class="hero glass">
+      <h1 data-text-ru="DOFRES" data-text-en="DOFRES">DOFRES</h1>
+      <p class="artist-name" data-text-ru="Артем Малышев" data-text-en="Artem Malyshev">Артем Малышев</p>
+      <p class="subtitle" data-text-ru="Инструментальная музыка." data-text-en="Instrumental music.">Инструментальная музыка.</p>
+      
+      <a href="#music" class="btn" data-text-ru="Слушать" data-text-en="Listen">Слушать</a>
+      <a href="https://open.spotify.com/artist/347CsoTPerEnJIhdyjubr2" target="_blank" class="btn" data-text-ru="Spotify" data-text-en="Spotify">Spotify</a>
+      <a href="https://band.link/DOFRES" target="_blank" class="btn" data-text-ru="Все площадки" data-text-en="All Platforms">Все площадки</a>
+    </div>
+  </header>
+
+  <!-- Spotify -->
+  <section style="background:#0f0a1f;">
+    <h2 data-text-ru="DOFRES на Spotify" data-text-en="DOFRES on Spotify">DOFRES на Spotify</h2>
+    <iframe class="spotify-player glass" 
+            src="https://open.spotify.com/embed/artist/347CsoTPerEnJIhdyjubr2" 
+            width="100%" height="380" frameborder="0" allow="encrypted-media"></iframe>
+  </section>
+
+  <!-- Музыка -->
+  <section id="music">
+    <h2 data-text-ru="Музыка" data-text-en="Music">Музыка</h2>
+    <div class="music-grid">
+      <a href="https://open.spotify.com/artist/347CsoTPerEnJIhdyjubr2" target="_blank" class="track glass">
+        <h3>An Eclipse of the Heart</h3>
+        <p data-text-ru="Артем Малышев • 2024" data-text-en="Artem Malyshev • 2024">Артем Малышев • 2024</p>
+      </a>
+      <a href="https://open.spotify.com/artist/347CsoTPerEnJIhdyjubr2" target="_blank" class="track glass">
+        <h3>Draw Near</h3>
+        <p data-text-ru="Артем Малышев • 2024" data-text-en="Artem Malyshev • 2024">Артем Малышев • 2024</p>
+      </a>
+      <a href="https://open.spotify.com/artist/347CsoTPerEnJIhdyjubr2" target="_blank" class="track glass">
+        <h3>Reflection Time</h3>
+        <p data-text-ru="Артем Малышев • 2024" data-text-en="Artem Malyshev • 2024">Артем Малышев • 2024</p>
+      </a>
+      <a href="https://open.spotify.com/artist/347CsoTPerEnJIhdyjubr2" target="_blank" class="track glass">
+        <h3>Sadness</h3>
+        <p data-text-ru="Артем Малышев • 2024" data-text-en="Artem Malyshev • 2024">Артем Малышев • 2024</p>
+      </a>
+      <a href="https://open.spotify.com/artist/347CsoTPerEnJIhdyjubr2" target="_blank" class="track glass">
+        <h3>Drowsy State</h3>
+        <p data-text-ru="Артем Малышев • 2024" data-text-en="Artem Malyshev • 2024">Артем Малышев • 2024</p>
+      </a>
+      <a href="https://open.spotify.com/artist/347CsoTPerEnJIhdyjubr2" target="_blank" class="track glass">
+        <h3>Eclipse of the Heart V2</h3>
+        <p data-text-ru="Артем Малышев • 2024" data-text-en="Artem Malyshev • 2024">Артем Малышев • 2024</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Об авторе -->
+  <section style="background:#0f0a1f;">
+    <div class="glass" style="max-width:900px; margin:0 auto; padding:50px; text-align:center;">
+      <h2 data-text-ru="Об авторе" data-text-en="About the Artist">Об авторе</h2>
+      <p id="bio" data-text-ru="Создаёт атмосферную инструментальную музыку." data-text-en="Creates atmospheric instrumental music.">
+        Создаёт атмосферную инструментальную музыку.
+      </p>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section style="text-align:center; padding:60px 5%; background:#0f0a1f;">
+    <h2 data-text-ru="Контакты" data-text-en="Contacts">Контакты</h2>
+    <p style="margin: 35px 0; font-size: 1.25rem; line-height: 1.8;">
+      <strong data-text-ru="Telegram:" data-text-en="Telegram:">Telegram:</strong> <a href="https://t.me/DOFRES" target="_blank">@DOFRES</a><br><br>
+      <strong data-text-ru="ВКонтакте:" data-text-en="VK:">ВКонтакте:</strong> <a href="https://vk.com/dofres" target="_blank">@dofres</a><br><br>
+      <strong data-text-ru="Email:" data-text-en="Email:">Email:</strong> <a href="mailto:amalyshev62@gmail.com">amalyshev62@gmail.com</a>
+    </p>
+  </section>
+
+  <!-- Донат -->
+  <section style="text-align:center; padding:40px 5%; background:#0f0a1f;">
+    <a href="https://dalink.to/dofres" target="_blank" class="btn donate-btn glass" 
+       data-text-ru="Поддержать проект" data-text-en="Support the Project">
+      Поддержать проект
+    </a>
+  </section>
+
+  <footer>
+    <p data-text-ru="&copy; 2026 DOFRES • Артем Малышев • Все права защищены" 
+       data-text-en="&copy; 2026 DOFRES • Artem Malyshev • All rights reserved">
+      &copy; 2026 DOFRES • Артем Малышев • Все права защищены
+    </p>
+  </footer>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('[data-text-ru]').forEach(el => {
+        el.textContent = lang === 'ru' ? el.getAttribute('data-text-ru') : el.getAttribute('data-text-en');
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+    }
+  </script>
+</body>
+</html>
